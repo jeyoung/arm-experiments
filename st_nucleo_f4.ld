@@ -4,7 +4,7 @@ MEMORY
     ram   (rwx) : ORIGIN = 0x20000000, LENGTH = 128K
 }
 
-_estack = ORIGIN(ram) + LENGTH(ram) - 4;
+_estack = ORIGIN(ram) + LENGTH(ram) - 512;
 
 ENTRY(reset)
 

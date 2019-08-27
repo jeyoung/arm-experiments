@@ -27,6 +27,8 @@
 #define NVIC_ICP        0xE000E280
 #define NVIC_ICPR0      *((unsigned long *)((NVIC_ICP)+0x00UL))
 
+void init(void);
+
 void nmi_handler(void);
 void hardfault_handler(void);
 void memfault_handler(void);
