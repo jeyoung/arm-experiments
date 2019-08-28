@@ -2,20 +2,36 @@
 
 void init(void)
 {
-    STK_LOAD = SYS_CLOCK_HZ/2U - 1U;
-    STK_VAL = 0;
-    STK_CTRL |= (1 << 0x2) | (1 << 0x1) | (1 << 0x0);
-
     RCC_AHB1ENR |= (1 << 0x0);
     GPIOA_MODER |= (1 << 0xA);
 
-    __asm("CPSIE i");
+    // Enable TIM1
+    RCC_APB2ENR |= (1 << 0x0);
 
+    // Enable TIM1 counter
+    TIM1_DIER   |= (1 << 0x0);
+    TIM1_PSC     = 45000UL-1UL;
+    TIM1_ARR     =  2000UL-1UL;
+    TIM1_CR1    |= (1 << 0x0);
+
+    NVIC_ICPR0  |= (1 << 0x19);
+    NVIC_ISER0  |= (1 << 0x19);
+
+#if 1
+    __asm("CPSIE i");
+#else
+    __asm("CPSID i");
+#endif
 }
 
-void systick_handler(void)
+void tim1update_handler(void)
 {
     __asm("CPSID i");
-    GPIOA_ODR ^= (1 << 0x5);
+    if (TIM1_SR & (1 << 0x0))
+    {
+        GPIOA_ODR  ^=  (1 << 0x05);
+        NVIC_ICPR0 |=  (1 << 0x19);
+        TIM1_SR    &= ~(1 << 0x00);
+    }
     __asm("CPSIE i");
 }

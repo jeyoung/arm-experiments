@@ -48,8 +48,37 @@ const unsigned long vector_table[] =
     (unsigned long)&debug_handler,
     (unsigned long)0,
     (unsigned long)&pendsv_handler,
-    (unsigned long)&systick_handler
+    (unsigned long)&systick_handler,
 
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    (unsigned long)&tim1update_handler,
+    (unsigned long)&tim1trigger_handler,
+    0,
+    (unsigned long)&tim2global_handler
 };
 
 void default_handler(void)
@@ -66,3 +95,6 @@ void svc_handler(void) __attribute__((weak, alias("default_handler")));
 void debug_handler(void) __attribute__((weak, alias("default_handler")));
 void pendsv_handler(void) __attribute__((weak, alias("default_handler")));
 void systick_handler(void) __attribute__((weak, alias("default_handler")));
+void tim1update_handler(void) __attribute__((weak, alias("default_handler")));
+void tim1trigger_handler(void) __attribute__((weak, alias("default_handler")));
+void tim2global_handler(void) __attribute__((weak, alias("default_handler")));
