@@ -28,8 +28,16 @@ void init(void)
 void tim1update_handler(void)
 {
     __asm("CPSID i");
-    GPIOA_ODR  ^=  (1 << 0x05);
-    TIM1_SR    &= ~(1 << 0x00);
+
+    // Clear the interrupt
     NVIC_ICPR0 |=  (1 << 0x19);
+
+    // Need to check that this IRG is
+    // indeed from the TIM1 'update' event.
+    if (TIM1_SR & (1 << 0x0))
+    {
+        GPIOA_ODR  ^=  (1 << 0x05);
+        TIM1_SR    &= ~(1 << 0x00);
+    }
     __asm("CPSIE i");
 }
