@@ -10,9 +10,10 @@ void init(void)
 
     // Enable TIM1 counter
     TIM1_DIER   |= (1 << 0x0);
-    TIM1_PSC     = 45000UL-1UL;
-    TIM1_ARR     =  2000UL-1UL;
+    TIM1_PSC     = 40000UL-1UL;
+    TIM1_ARR     =   100UL-1UL;
     TIM1_CR1    |= (1 << 0x0);
+    TIM1_CNT     = 0x0;
 
     NVIC_ICPR0  |= (1 << 0x19);
     NVIC_ISER0  |= (1 << 0x19);
@@ -27,11 +28,8 @@ void init(void)
 void tim1update_handler(void)
 {
     __asm("CPSID i");
-    if (TIM1_SR & (1 << 0x0))
-    {
-        GPIOA_ODR  ^=  (1 << 0x05);
-        NVIC_ICPR0 |=  (1 << 0x19);
-        TIM1_SR    &= ~(1 << 0x00);
-    }
+    GPIOA_ODR  ^=  (1 << 0x05);
+    TIM1_SR    &= ~(1 << 0x00);
+    NVIC_ICPR0 |=  (1 << 0x19);
     __asm("CPSIE i");
 }
