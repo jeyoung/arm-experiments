@@ -32,7 +32,7 @@ void tim1update_handler(void)
     // Clear the interrupt
     NVIC_ICPR0 |=  (1 << 0x19);
 
-    // Need to check that this IRG is
+    // Need to check that this IRQ is
     // indeed from the TIM1 'update' event.
     if (TIM1_SR & (1 << 0x0))
     {
