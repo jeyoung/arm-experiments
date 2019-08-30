@@ -1,13 +1,25 @@
 #define RCC             0x40023800UL
+#define RCC_CR          *((volatile unsigned long *)((RCC)+0x00UL))
+#define RCC_PLLCFGR     *((volatile unsigned long *)((RCC)+0x04UL))
 #define RCC_CFGR        *((volatile unsigned long *)((RCC)+0x08UL))
 #define RCC_AHB1ENR     *((volatile unsigned long *)((RCC)+0x30UL))
 #define RCC_APB1ENR     *((volatile unsigned long *)((RCC)+0x40UL))
 #define RCC_APB2ENR     *((volatile unsigned long *)((RCC)+0x44UL))
 
+#define FLASH           0x40023C00UL
+#define FLASH_ACR       *((volatile unsigned long *)((FLASH)+0x00UL))
+
 #define GPIOA           0x40020000UL
 #define GPIOA_MODER     *((volatile unsigned long *)((GPIOA)+0x00UL))
 #define GPIOA_OTYPER    *((volatile unsigned long *)((GPIOA)+0x04UL))
+#define GPIOA_OSPEEDR   *((volatile unsigned long *)((GPIOA)+0x08UL))
 #define GPIOA_ODR       *((volatile unsigned long *)((GPIOA)+0x14UL))
+
+#define GPIOC           0x40020800UL
+#define GPIOC_MODER     *((volatile unsigned long *)((GPIOC)+0x00UL))
+#define GPIOC_OTYPER    *((volatile unsigned long *)((GPIOC)+0x04UL))
+#define GPIOC_OSPEEDR   *((volatile unsigned long *)((GPIOC)+0x08UL))
+#define GPIOC_ODR       *((volatile unsigned long *)((GPIOC)+0x14UL))
 
 #define STK             0xE000E010UL
 #define STK_CTRL        *((volatile unsigned long *)((STK)+0x00UL))

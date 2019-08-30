@@ -19,7 +19,7 @@ LDFLAGS_ARCH=	$(LDFLAGS) $(FLAGS_ARCH) -specs=nosys.specs -nostartfiles -nostdli
 
 
 .PHONY: clean all
-all: clean $(OUTPUT) $(PROJECT).o
+all: clean upload
 
 clean:
 	find -name '*.o' -exec rm {} +
