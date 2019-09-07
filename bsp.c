@@ -11,8 +11,14 @@ void init(void)
     RCC_CFGR |=  (0x03 << 0x1E); // Output PLL to MCO2 (PC9)
     RCC_CFGR |=  (0x02 << 0x15); // Output HSE to MCO1 (PA8)
 
+    // Enable HSE
+    RCC_CR      |= (0x01 << 0x10);
+    while (((RCC_CR & (0x01 << 0x11)) >> 0x11) == 0)
+        ;
+
     // Disable, then configure PLL
     // M = 4, N = 200, P = 4, source = HSE
+    // (8,000,000 / 4) * (200 / 4) = 100,000,000 Hz
     RCC_CR &= ~(0x01 << 0x18);
     while (((RCC_CR & (0x01 << 0x19)) >> 0x19))
         ;
@@ -30,11 +36,6 @@ void init(void)
     RCC_PLLCFGR |=  (0x01  << 0x10);
 
     RCC_PLLCFGR |=  (0x01  << 0x16);
-
-    // Enable HSE
-    RCC_CR      |= (0x01 << 0x10);
-    while (((RCC_CR & (0x01 << 0x11)) >> 0x11) == 0)
-        ;
 
     // Enable PLL and wait for it to lock
     RCC_CR |= (0x01 << 0x18);
@@ -65,7 +66,7 @@ void init(void)
     RCC_APB2ENR   |= (0x01 << 0x00);
     TIM1_DIER     |= (0x01 << 0x00);
     TIM1_PSC       =    40000UL-1UL;
-    TIM1_ARR       =      100UL-1UL;
+    TIM1_ARR       =     2500UL-1UL;
     TIM1_CR1      |= (0x01 << 0x00);
     TIM1_CNT       =           0x00;
 
