@@ -77,7 +77,7 @@ void init(void)
     __asm("CPSIE i");
 }
 
-void tim1update_handler(void)
+void TIM1_UP_TIM9_Handler(void)
 {
     __asm("CPSID i");
     NVIC_ICPR0 |=  (0x01 << 0x19);

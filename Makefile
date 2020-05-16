@@ -5,7 +5,7 @@ PROJECT=	blink
 OUTPUT=		$(PROJECT).elf
 BINARY=		$(PROJECT).bin
 
-DEPS=		startup.c bsp.c
+DEPS=		startup_stm32f446.c bsp.c
 
 FLAGS=		-g -Os -Wall -pedantic
 FLAGS_ARCH=     -mcpu=cortex-m4 -mthumb -mthumb-interwork -mlittle-endian -mfpu=vfp

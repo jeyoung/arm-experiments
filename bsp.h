@@ -62,16 +62,3 @@
 #define TIM2_ARR        *((volatile unsigned long *)((TIM2)+0x2CUL))
 
 void init(void);
-
-void nmi_handler(void);
-void hardfault_handler(void);
-void memfault_handler(void);
-void busfault_handler(void);
-void usagefault_handler(void);
-void svc_handler(void);
-void debug_handler(void);
-void pendsv_handler(void);
-void systick_handler(void);
-void tim1update_handler(void);
-void tim1trigger_handler(void);
-void tim2global_handler(void);
