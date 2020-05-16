@@ -80,7 +80,7 @@ void SPI2_Handler(void) __attribute__((weak, alias("default_handler")));
 void USART1_Handler(void) __attribute__((weak, alias("default_handler")));
 void USART2_Handler(void) __attribute__((weak, alias("default_handler")));
 void USART3_Handler(void) __attribute__((weak, alias("default_handler")));
-void EXTI5_10_Handler(void) __attribute__((weak, alias("default_handler")));
+void EXTI15_10_Handler(void) __attribute__((weak, alias("default_handler")));
 void RTC_Alarm_Handler(void) __attribute__((weak, alias("default_handler")));
 void OTG_FS_WKUP_Handler(void) __attribute__((weak, alias("default_handler")));
 void TIM8_BRK_TIM12_Handler(void) __attribute__((weak, alias("default_handler")));
@@ -186,7 +186,7 @@ const unsigned long vector_table[] =
     (unsigned long)&USART1_Handler,
     (unsigned long)&USART2_Handler,
     (unsigned long)&USART3_Handler,
-    (unsigned long)&EXTI5_10_Handler,
+    (unsigned long)&EXTI15_10_Handler,
     (unsigned long)&RTC_Alarm_Handler,
     (unsigned long)&OTG_FS_WKUP_Handler,
     (unsigned long)&TIM8_BRK_TIM12_Handler,
